@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Przepisywanie listy</title>
+</head>
+<body>
+	<ul>
+		<li>Emil Sienkiewicz, 28 lat</li>
+		<li>Jan Kowalski, 51 lat</li>
+		<li>Piotr Piotrowski, 18 lat</li>
+		<li>Janusz Biznesu, 22 lat</li>
+	</ul>
+	<a href='#' id='button'>Zamień</a>
+	<!--
+		Po naciśnięciu przycisku:
+		Bierzesz wszystkie li z ul,
+		Dla pierwszego słowa w li (od 0 znaku do pierwszej spacji) wyciągasz pierwszą literę (od 0 znaku do 1 znaku),
+		Wyciągasz drugie słowo (od pierwszej spacji do przecinka),
+		Dla ciągu znaków pomiędzy przecinkiem i spacją a zwrotem " lat" wyciągasz liczbę,
+		Z różnicy pomiędzy wyciągniętą liczbą (wiekiem) a rokiem z new Date() liczysz rok urodzenia,
+		Na podstawie powyższych danych tworzysz pod przyciskiem (na końcu body) kolejny ul,
+		Do którego wstawiasz tyle samo li,
+		Z pierwszą literą imienia, nazwiskiem i rokiem urodzenia.
+		Oczekiwany wynik: 
+		<ul>
+			<li>E. Sienkiewicz, urodzony w: 1991</li>
+			<li>J. Kowalski, urodzony w: 1968</li>
+			<li>P. Piotrowski, urodzony w: 2001</li>
+			<li>J. Biznesu, urodzony w: 1997</li>
+		</ul>
+	-->
+	<script>
+		var originList = document.getElementsByTagName('ul')[0],
+			originListItems = originList.getElementsByTagName('li'),
+			button = document.getElementById('button'),
+			body = document.body,
+			currentYear = new Date().getFullYear();
+
+		button.addEventListener('click', function (e) {
+			var newList = document.createElement('ul');
+
+			e.preventDefault();
+
+			for (var i = 0; i < originListItems.length; i++) {
+				var textLine = originListItems[i].innerText,
+					person = {
+						firstName: textLine.substring(0, textLine.indexOf(' ')),
+						lastName: textLine.substring(textLine.indexOf(' ') + 1, textLine.indexOf(',')),
+						age: Number(textLine.substring(textLine.indexOf(', ') + 2, textLine.indexOf(' lat')))
+					},
+					newListItem = document.createElement('li'),
+					newListItemText;
+
+				person.yearOfBirth = currentYear - person.age;
+				person.firstNameInitial = person.firstName.substring(0, 1);
+
+				console.log(person);
+
+				newListItemText = document.createTextNode(
+					person.firstNameInitial +
+					'. ' +
+					person.lastName +
+					', urodzony w: ' +
+					person.yearOfBirth
+				);
+
+				newListItem.appendChild(newListItemText);
+				newList.appendChild(newListItem);
+			}
+
+			body.appendChild(newList);
+		});
+	</script>
+</body>
+</html>
