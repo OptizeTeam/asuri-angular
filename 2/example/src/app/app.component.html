@@ -1,0 +1,41 @@
+<router-outlet></router-outlet>
+<div>
+  <h4>Interpolacja w tekście</h4>
+  <p>Welcome to {{ title }}!</p>
+</div>
+<div>
+  <h4>Interpolacja w atrybucie</h4>
+  <input type="submit" value="{{ nameOfButton }}">
+</div>
+<div>
+  <h4>Zachowanie atrybutu względem zmiennej</h4>
+  <p [hidden]="hideMe">Jestem widoczny jak hideMe jest fałszem.</p>
+  <p [hidden]="!hideMe">Jestem widoczny jak hideMe jest prawdą.</p>
+</div>
+<div>
+  <h4>Event binding</h4>
+  <button (click)="runMyMethod()">Kliknij mnie</button>
+</div>
+<div>
+  <h4>*ngIf, template i odwołanie do elementu</h4>
+  <div *ngIf="foo === 3 then whatIfTrue else whatIfFalse"></div>
+  <ng-template #whatIfTrue>Co jeśli foo jest równie 3?</ng-template>
+  <ng-template #whatIfFalse>Co jeśli foo jest różne od 3?</ng-template>
+</div>
+<div>
+  <h4>*ngFor</h4>
+  <ul>
+    <li *ngFor="let person of people">
+      {{ person }}
+    </li>
+  </ul>
+</div>
+<div>
+  <h4>Two-way data binding</h4>
+  <input [(ngModel)]="foo" type="number" placeholder="liczba">
+  <p>Wartość inputa: {{ foo }}</p>
+</div>
+<div>
+  <h4>Czy wystąpi kolizja w zmiennych między komponentem app a footer? {{ companyName }}</h4>
+</div>
+<app-footer></app-footer>
