@@ -1,0 +1,27 @@
+<table>
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Autor</th>
+    <th>Tytuł</th>
+    <th>Ilość</th>
+    <th>Cena</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let book of books | async">
+    <td>{{ book.id }}</td>
+    <td>{{ book.author }}</td>
+    <td>{{ book.title }}</td>
+    <td>{{ book.quantity }}</td>
+    <td>{{ book.price }} zł</td>
+  </tr>
+  </tbody>
+</table>
+<button (click)="addBook()">Dodaj kolejną książkę</button>
+<div>
+  <h3>Usuń książkę</h3>
+  <label for="book-to-delete">ID:</label>
+  <input id="book-to-delete" type="number" [(ngModel)]="bookToDelete">
+  <button (click)="deleteBook()">Usuń</button>
+</div>

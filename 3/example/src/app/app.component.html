@@ -1,0 +1,21 @@
+<h1>
+  Welcome to {{ title }}!
+</h1>
+<ul>
+  <li>
+    <a [routerLink]="['/']">Index</a>
+  </li>
+  <li>
+    <a [routerLink]="['/form']">Form</a>
+  </li>
+  <li>
+    <a [routerLink]="['/api']">API</a>
+  </li>
+  <li>
+    <a [routerLink]="['/service']">Service</a>
+  </li>
+  <li>
+    <a [routerLink]="['/directive']">Directive</a>
+  </li>
+</ul>
+<router-outlet></router-outlet>

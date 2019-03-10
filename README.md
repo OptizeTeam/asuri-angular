@@ -7,3 +7,5 @@ Numery katalogów w roocie odpowiadają numerowi zajęć. Zawartość poszczegó
 2. Podkatalogi:
    * example: Przykładowa aplikacja na Angularze prezentująca omówione możliwości.
    * ts2js: Przykład kompilacji TypeScript do JavaScript z wykorzystaniem w przeglądarce.
+3. Podkatalogi:
+   * example: Formularze, API, serwisy i dyrektywy.
