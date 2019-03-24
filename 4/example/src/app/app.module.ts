@@ -7,6 +7,7 @@ import {MainpageComponent} from './mainpage/mainpage.component';
 import {PostComponent} from './post/post.component';
 import {HttpClientModule} from '@angular/common/http';
 import {NewsletterComponent} from './newsletter/newsletter.component';
+import {ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import {NewsletterComponent} from './newsletter/newsletter.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,8 +1,11 @@
 describe('Blog client side', function () {
-  it('Shows latest posts and single post', function () {
-    var url = 'http://localhost:4200';
+  const url = 'http://localhost:4200';
 
+  beforeEach(() => {
     cy.visit(url);
+  });
+
+  it('Shows latest posts and single post', function () {
     cy.url().should('eq', url + '/#/');
 
     cy.get('h1').should('contain', 'Strona główna');
@@ -28,5 +31,22 @@ describe('Blog client side', function () {
 
     cy.get('@backButton').click();
     cy.url().should('eq', url + '/#/');
+  });
+
+  it('Sign to newsletter', () => {
+    cy.server();
+    cy.route('POST', 'newsletter').as('postNewsletter');
+
+    cy.url().should('eq', url + '/#/');
+
+    cy.get('app-newsletter').as('newsletter');
+    cy.get('@newsletter').find('h2').should('contain', 'Newsletter');
+    cy.get('@newsletter').find('label').should('contain', 'E-mail');
+    cy.get('@newsletter').find('button').should('contain', 'Zapisz się');
+
+    cy.get('@newsletter').find('form').as('form');
+    cy.get('@form').find('input[type="email"]').type('dev+cypress@optize.pl');
+    cy.get('@form').submit();
+    cy.wait('@postNewsletter').its('status').should('eq', 200);
   });
 });
