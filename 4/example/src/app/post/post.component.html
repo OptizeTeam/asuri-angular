@@ -1,0 +1,5 @@
+<div class="single-post">
+  <h1>{{ post.title }}</h1>
+  <div class="content" [innerHTML]='post.content'></div>
+  <a class="back" [routerLink]="['/']">Wróć do strony głównej</a>
+</div>
